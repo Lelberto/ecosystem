@@ -78,14 +78,4 @@ export class Vector2 {
     const dy = this.y - target.y;
     return dx * dx + dy * dy;
   }
-
-  /**
-   * Checks if this vector and target are in defined range.
-   * 
-   * @param target Vector2 target
-   * @param range Range
-   */
-  public isInRange(target: Vector2, range: number): boolean {
-    return this.distance(target) < range * range;
-  }
 }
