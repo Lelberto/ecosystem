@@ -1,0 +1,6 @@
+{
+  "short_name": "Ecosystem",
+  "name": "Ecosystem simulator",
+  "start_url": ".",
+  "display": "standalone"
+}
