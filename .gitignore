@@ -1,8 +1,9 @@
 # Node
 /node_modules
 
-# Production
+# Build
 /build
+/src/css/index.css
 
 # Lint
 .eslintcache
