@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { Human } from '../entities/human';
+import { isMovable, Movable } from '../entities/movable';
 import { Zombie } from '../entities/zombie';
 import { Location } from '../utils/location';
 import { Vector2 } from '../utils/vector2';
@@ -28,11 +29,20 @@ export class EpidemicEcosystem extends Ecosystem {
    */
   public generate(maxEntities: number): void {
     let location = new Location(this, _.random(0, this.size.x), _.random(0, this.size.y));
-    this.entities.push(new Zombie(location, new Vector2(1, 1), '#00FF00'));
+    this.entities.push(new Zombie(location, new Vector2(3, 3), '#00FF00'));
 
     for (let i = 1; i < maxEntities; i++) {
       location = new Location(this, _.random(0, this.size.x), _.random(0, this.size.y));
-      this.entities.push(new Human(location, new Vector2(1, 1), '#FF0000'));
+      this.entities.push(new Human(location, new Vector2(3, 3), '#FF0000'));
+    }
+  }
+
+  public update(): void {
+    for (const entity of this.entities) {
+      if (isMovable(entity)) {
+        (entity as Movable).move();
+      }
+      this.checkBorder(entity);
     }
   }
 }
