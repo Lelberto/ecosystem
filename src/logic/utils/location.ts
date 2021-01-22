@@ -32,4 +32,20 @@ export class Location {
   public isInRange(target: Location, range: number): boolean {
     return this.vec.distance(target.vec) < range * range;
   }
+
+  public get x(): number {
+    return this.vec.x;
+  }
+
+  public set x(x: number) {
+    this.vec.x = x;
+  }
+
+  public get y(): number {
+    return this.vec.y;
+  }
+
+  public set y(y: number) {
+    this.vec.y = y;
+  }
 }
