@@ -13,9 +13,20 @@ export abstract class Ecosystem {
 
   /**
    * Creates a new Ecosystem.
+   * 
+   * @param size Size
    */
-  protected constructor() {
-    this.size = new Vector2(100, 100);
+  protected constructor(size: Vector2) {
+    this.size = size;
     this.entities = [];
   }
+
+  /**
+   * Generates the ecosystem.
+   * 
+   * This method must use the `entities` attribute to fill it.
+   * 
+   * @param maxEntities Max entities to generate
+   */
+  public abstract generate(maxEntities: number): void;
 }
