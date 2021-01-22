@@ -49,11 +49,7 @@ export class Simulation {
    */
   private update(): void {
     if (this._state === SimulationState.IN_PROGRESS) {
-      for (const entity of this.ecosystem.entities) {
-        if (isMovable(entity)) {
-          (entity as Movable).move();
-        }
-      }
+      this.ecosystem.update();
     }
   }
 
