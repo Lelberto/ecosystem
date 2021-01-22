@@ -1,5 +1,4 @@
 import { Ecosystem } from '../ecosystems/ecosystem';
-import { isMovable, Movable } from '../entities/movable';
 
 /**
  * Simulation class.
