@@ -8,7 +8,7 @@ export type Draw = (ctx: CanvasRenderingContext2D, frameCount: number) => void;
 /**
  * Canvas props.
  */
-interface CanvasProps {
+interface CanvasProps extends React.HTMLProps<HTMLCanvasElement> {
   draw: Draw;
 }
 
@@ -39,6 +39,6 @@ export const Canvas: React.FC<CanvasProps> = (props) => {
   }, [props.draw]);
 
   return (
-    <canvas ref={canvasRef} width={document.body.clientWidth} height={document.body.clientHeight} />
+    <canvas ref={canvasRef} {...props} />
   );
 }
