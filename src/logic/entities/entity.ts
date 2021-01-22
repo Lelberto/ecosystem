@@ -1,4 +1,5 @@
 import { Location } from '../utils/location';
+import { Updatable } from '../utils/updatable';
 import { Vector2 } from '../utils/vector2';
 
 /**
@@ -6,7 +7,7 @@ import { Vector2 } from '../utils/vector2';
  * 
  * This class is the entity base.
  */
-export abstract class Entity {
+export abstract class Entity implements Updatable {
 
   public location: Location;
   public size: Vector2;
@@ -24,4 +25,9 @@ export abstract class Entity {
     this.size = size;
     this.color = color;
   }
+
+  /**
+   * Updates the entity.
+   */
+  public abstract update(): void;
 }

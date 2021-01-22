@@ -1,4 +1,5 @@
 import { Entity } from '../entities/entity';
+import { Updatable } from '../utils/updatable';
 import { Vector2 } from '../utils/vector2';
 
 /**
@@ -6,7 +7,7 @@ import { Vector2 } from '../utils/vector2';
  * 
  * An ecosystem is the object that contains the simulation.
  */
-export abstract class Ecosystem {
+export abstract class Ecosystem implements Updatable {
 
   public size: Vector2;
   public readonly entities: Entity[];

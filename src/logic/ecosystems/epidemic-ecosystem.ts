@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { Human } from '../entities/human';
-import { isMovable, Movable } from '../entities/movable';
 import { Zombie } from '../entities/zombie';
 import { Location } from '../utils/location';
 import { Vector2 } from '../utils/vector2';
@@ -39,9 +38,7 @@ export class EpidemicEcosystem extends Ecosystem {
 
   public update(): void {
     for (const entity of this.entities) {
-      if (isMovable(entity)) {
-        (entity as Movable).move();
-      }
+      entity.update();
       this.checkBorder(entity);
     }
   }

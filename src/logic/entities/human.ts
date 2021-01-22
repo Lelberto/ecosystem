@@ -23,9 +23,10 @@ export class Human extends Entity implements Movable {
     this.moveLock = Date.now();
   }
 
-  /**
-   * Moves the human.
-   */
+  public update(): void {
+    this.move();
+  }
+
   public move(): void {
     if (Date.now() - this.moveLock >= 1 * 1000) {
       this.moveLock = Date.now();
