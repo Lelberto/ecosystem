@@ -1,5 +1,3 @@
-import { Location } from '../utils/location';
-
 /**
  * Movable interface.
  * 
@@ -7,5 +5,14 @@ import { Location } from '../utils/location';
  */
 export interface Movable {
   speed: number;
-  move(location: Location): void;
+  move(): void;
+}
+
+/**
+ * Checks if an objects implements the Movable interface.
+ * 
+ * @param obj Object to check
+ */
+export function isMovable(obj: any): obj is Movable {
+  return 'speed' in obj;
 }
