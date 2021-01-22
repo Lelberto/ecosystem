@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { Human } from '../entities/human';
+import { LivingEntity } from '../entities/living-entity';
 import { Zombie } from '../entities/zombie';
 import { Location } from '../utils/location';
 import { Vector2 } from '../utils/vector2';
@@ -38,7 +39,9 @@ export class EpidemicEcosystem extends Ecosystem {
 
   public update(): void {
     for (const entity of this.entities) {
-      entity.update();
+      if (entity instanceof LivingEntity) {
+        entity.update();
+      }
       this.checkBorder(entity);
     }
   }

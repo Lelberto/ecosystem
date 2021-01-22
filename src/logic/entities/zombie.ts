@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import { Location } from '../utils/location';
 import { Vector2 } from '../utils/vector2';
-import { Entity } from './entity';
+import { LivingEntity } from './living-entity';
 import { Movable } from './movable';
 
 /**
  * Zombie class.
  */
-export class Zombie extends Entity implements Movable {
+export class Zombie extends LivingEntity implements Movable {
 
   public speed: number;
   private moveType: number;
