@@ -1,4 +1,5 @@
 import { Ecosystem } from '../ecosystems/ecosystem';
+import { isMovable, Movable } from '../entities/movable';
 
 /**
  * Simulation class.
@@ -6,15 +7,18 @@ import { Ecosystem } from '../ecosystems/ecosystem';
 export class Simulation {
 
   public ecosystem: Ecosystem;
+  public readonly speed: number;
   private _state: SimulationState;
 
   /**
    * Creates a new simulation.
    * 
    * @param ecosystem Ecosystem
+   * @param speed Speed
    */
-  public constructor(ecosystem: Ecosystem) {
+  public constructor(ecosystem: Ecosystem, speed: number) {
     this.ecosystem = ecosystem;
+    this.speed = speed;
     this._state = SimulationState.STOPPED;
   }
 
@@ -23,6 +27,7 @@ export class Simulation {
    */
   public play(): void {
     this._state = SimulationState.IN_PROGRESS;
+    setInterval(this.update.bind(this), this.speed);
   }
 
   /**
@@ -37,6 +42,19 @@ export class Simulation {
    */
   public stop(): void {
     this._state = SimulationState.STOPPED;
+  }
+
+  /**
+   * Updates the simulation.
+   */
+  private update(): void {
+    if (this._state === SimulationState.IN_PROGRESS) {
+      for (const entity of this.ecosystem.entities) {
+        if (isMovable(entity)) {
+          (entity as Movable).move();
+        }
+      }
+    }
   }
 
   public get state(): SimulationState {
