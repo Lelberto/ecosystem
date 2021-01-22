@@ -7,3 +7,6 @@
 
 # Lint
 .eslintcache
+
+# Test
+/src/logic/ecosystems/test-ecosystem.ts
