@@ -2,12 +2,11 @@ import _ from 'lodash';
 import { Location } from '../utils/location';
 import { Vector2 } from '../utils/vector2';
 import { LivingEntity } from './living-entity';
-import { Movable } from './movable';
 
 /**
  * Human class.
  */
-export class Human extends LivingEntity implements Movable {
+export class Human extends LivingEntity {
 
   public speed: number;
   private moveType: number;
@@ -19,7 +18,7 @@ export class Human extends LivingEntity implements Movable {
   public constructor(location: Location, size: Vector2, color: string) {
     super(location, size, color);
     this.speed = 1;
-    this.moveType = 0;
+    this.moveType = _.random(0, 8);
     this.moveLock = { timer: Date.now(), factor: (1 * _.random(0.5, 1, true)) };
   }
 
@@ -27,7 +26,10 @@ export class Human extends LivingEntity implements Movable {
     this.move();
   }
 
-  public move(): void {
+  /**
+   * Moves the human.
+   */
+  private move(): void {
     if (Date.now() - this.moveLock.timer >= this.moveLock.factor * 1000) {
       this.moveLock.timer = Date.now();
       this.moveType = _.random(0, 8);
