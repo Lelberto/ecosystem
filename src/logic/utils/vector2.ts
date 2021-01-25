@@ -2,6 +2,7 @@
  * Vector2 class.
  * 
  * This class is used to manage vectors with two numbers (x, y).
+ * The `width` and `height` are mapped to `x` and `y`, so their values are similar.
  */
 export class Vector2 {
 
@@ -77,5 +78,21 @@ export class Vector2 {
     const dx = this.x - target.x;
     const dy = this.y - target.y;
     return dx * dx + dy * dy;
+  }
+
+  public get width(): number {
+    return this.x;
+  }
+
+  public set width(width: number) {
+    this.x = width;
+  }
+
+  public get height(): number {
+    return this.y;
+  }
+
+  public set height(height: number) {
+    this.y = height;
   }
 }
