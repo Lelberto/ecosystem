@@ -2,11 +2,12 @@ import _ from 'lodash';
 import { Location } from '../utils/location';
 import { Vector2 } from '../utils/vector2';
 import { LivingEntity } from './living-entity';
+import { Movable } from './movable';
 
 /**
  * Zombie class.
  */
-export class Zombie extends LivingEntity {
+export class Zombie extends LivingEntity implements Movable {
 
   public speed: number;
   private moveType: number;
@@ -29,7 +30,7 @@ export class Zombie extends LivingEntity {
   /**
    * Moves the zombie.
    */
-  private move(): void {
+  public move(): void {
     if (Date.now() - this.moveLock >= 1 * 1000) {
       this.moveLock = Date.now();
       this.moveType = _.random(0, 8);
