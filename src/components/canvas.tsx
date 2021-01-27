@@ -1,15 +1,11 @@
 import { useEffect, useRef } from 'react';
-
-/**
- * Draw function.
- */
-export type Draw = (ctx: CanvasRenderingContext2D, frameCount: number) => void;
+import { Ecosystem } from '../logic/ecosystems/ecosystem';
 
 /**
  * Canvas props.
  */
 interface CanvasProps extends React.HTMLProps<HTMLCanvasElement> {
-  draw: Draw;
+  ecosystem: Ecosystem;
 }
 
 /**
@@ -24,11 +20,9 @@ export const Canvas: React.FC<CanvasProps> = (props) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     let animationFrameId: number;
-    let frameCount = 0;
 
     const render = () => {
-      frameCount++;
-      props.draw(context, frameCount);
+      props.ecosystem.ctx = context;
       animationFrameId = window.requestAnimationFrame(render);
     }
     render();
@@ -36,9 +30,7 @@ export const Canvas: React.FC<CanvasProps> = (props) => {
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     }
-  }, [props.draw]);
+  }, [props.ecosystem]);
 
-  return (
-    <canvas ref={canvasRef} {...props} />
-  );
+  return <canvas ref={canvasRef} width={props.width} height={props.height} />
 }
